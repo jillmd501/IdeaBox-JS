@@ -21,7 +21,6 @@ function renderIdeas(idea) {
     + "<p>"
     + idea.body
     + "</p>"
-    + "<button id='delete-idea' name='button-fetch' class='btn btn-default btn-xs'>Delete</button>"
     + "</div>"
     )
 }
@@ -34,7 +33,7 @@ function fetchIdeas() {
     success: function(ideas) {
       $.each(ideas, function(index, idea) {
         if (isNaN(newestIdeaID) || idea.id > newestItemID) {
-          renderIdea(idea)
+          renderIdeas(idea)
         }
       })
     },
@@ -42,10 +41,4 @@ function fetchIdeas() {
       console.log(xhr.responseText)
     }
   })
-}
-
-function fetchIdeasButton() {
-  $("[name='button-fetch']").on("click", function(){
-    fetchIdeas()
-    })
 }
