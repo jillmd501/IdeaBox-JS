@@ -1,7 +1,8 @@
 $(document).ready(function(){
     listIdeas();
     fetchIdeas();
-        createIdea();
+    createIdea();
+    deleteIdea();
 });
 
 function listIdeas(){
@@ -13,7 +14,7 @@ function listIdeas(){
 };
 
 function renderIdeas(idea) {
-  $("#latest-ideas").append(
+  $("#latest-ideas").prepend(
     "<div class='idea' id='" + idea.id + "'> "
     + "<h4>"
     + idea.title
@@ -25,7 +26,7 @@ function renderIdeas(idea) {
     + idea.quality
     + "</h5>"
     + "</div>"
-    + "<i class='material-icons' id='delete-idea'>Delete</i></div></li>"
+    + "<div class='btn btn-default' id='delete-idea'>Delete</div>"
     )
 }
 
@@ -55,30 +56,30 @@ function createIdea() {
         body: $("#idea-body").val()
       }
     }
-  })
 
-  $("#idea-title").val()
-  $("#idea-body").val()
+  $("#idea-title").val('')
+  $("#idea-body").val('')
 
   $.ajax({
     type:    "POST",
     url:     "/api/v1/ideas.json",
     data:    ideaParams,
     success: function(newIdea) {
-      renderIdea(newIdea)
+      renderIdeas(newIdea)
     },
     error: function(xhr) {
       console.log(xhr.responseText)
     }
+    })
   })
 };
 
   function deleteIdea() {
-    $('#latest-ideas').delegate('#delete-idea', 'click', function(){
+    $('#delete-idea').on('click', function() {
       var $idea = $(this).closest('.idea')
       $.ajax({
         type: 'DELETE',
-        url:  '/api/v1/ideas/' + $idea.attr('data-id') + '.json',
+        url:  '/api/v1/ideas/' + $idea.data("id") + '.json',
         success: function(){
           $idea.remove()
         },
