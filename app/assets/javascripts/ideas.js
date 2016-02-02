@@ -2,6 +2,7 @@ $(document).ready(function(){
     fetchIdeas();
     createIdea();
     deleteIdea();
+    editIdea();
 });
 
 
@@ -18,6 +19,7 @@ function renderIdeas(idea) {
     + idea.quality
     + "</h5>"
     + "<div class='btn btn-default' id='delete-idea'>Delete</div>"
+    + "<div class='btn btn-default' id='edit-idea'>Edit</div>"
     + "</div>"
     )
 }
@@ -83,7 +85,40 @@ function createIdea() {
     })
   }
 
-// not sure what to do with this yet
+
+  function editIdea() {
+    $('#latest-ideas').delegate('#edit-idea', 'click', function() {
+      var $idea = $(this).closest(".idea");
+      document.getElementById("idea-title" + $idea.attr('data-id')).contentEditable = true;
+      document.getElementById("idea-body" + $idea.attr('data-id')).contentEditable = true;
+
+      $(".saveIdeaButton").click(function(){
+        document.getElementById("idea-title" + $idea.attr('data-id')).contentEditable = false;
+        document.getElementById("idea-body" + $idea.attr('data-id')).contentEditable = false;
+        $(".saveIdeaButton").remove();
+        var ideaParams = {
+          idea: {
+            id: $idea.attr('data-id'),
+            title: $("#idea-title" + $idea.attr('data-id')).text(),
+            body: $("#idea-body" + $idea.attr('data-id')).text()
+          }
+        }
+
+        $.ajax({
+          type: 'PUT',
+          url: '/api/v1/ideas/' + $idea.attr('data-id'),
+          data: ideaParams,
+          success: function() {
+            fetchIdeas();
+          },
+          error: function(xhr) {
+            console.log(xhr.responseText)
+          }
+        });
+      });
+    });
+  };
+
 var Cam = {
   genius: "genius",
   plausible: "genius",
