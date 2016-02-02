@@ -6,13 +6,22 @@ class Api::V1::IdeasController < ApplicationController
   end
 
   def create
-  @idea = Idea.new(idea_params)
-    if @idea.save
-      respond_with :api, :v1, @idea
-    else
-      # do something
-    end
+    respond_with Idea.create(idea_params), location: nil
   end
+
+  def show
+    respond_with Idea.find(params["id"])
+  end
+
+  def destroy
+    respond_with Idea.destroy(params[:id])
+  end
+
+  def update
+    @idea = Idea.find(params["id"]).update(idea_params)
+    respond_with @idea, json: @idea
+  end
+
   private
 
   def idea_params
