@@ -89,6 +89,7 @@ function createIdea() {
   function editIdea() {
     $('#latest-ideas').delegate('#edit-idea', 'click', function() {
       var $idea = $(this).closest(".idea");
+      @rrgayhart
       // it says 'Uncaught TypeError: Cannot set property 'contentEditable' of null'
       document.getElementById("idea-title" + $idea.attr('data-id')).contentEditable = true;
       document.getElementById("idea-body" + $idea.attr('data-id')).contentEditable = true;
