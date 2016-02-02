@@ -1,20 +1,13 @@
 $(document).ready(function(){
-    listIdeas();
     fetchIdeas();
-        createIdea();
+    createIdea();
+    deleteIdea();
 });
 
-function listIdeas(){
-  $.getJSON('/api/v1/ideas', function(data) {
-    $.each(data, function(index, idea){
-      renderIdeas(idea)
-    })
-  });
-};
 
 function renderIdeas(idea) {
-  $("#latest-ideas").append(
-    "<div class='idea' id='" + idea.id + "'> "
+  $("#latest-ideas").prepend(
+    "<div class='idea' data-id='" + idea.id + "'> "
     + "<h4>"
     + idea.title
     + "</h4>"
@@ -24,8 +17,8 @@ function renderIdeas(idea) {
     + "<h5>"
     + idea.quality
     + "</h5>"
+    + "<div class='btn btn-default' id='delete-idea'>Delete</div>"
     + "</div>"
-    + "<i class='material-icons' id='delete-idea'>Delete</i></div></li>"
     )
 }
 
@@ -55,30 +48,30 @@ function createIdea() {
         body: $("#idea-body").val()
       }
     }
-  })
 
-  $("#idea-title").val()
-  $("#idea-body").val()
+  $("#idea-title").val('')
+  $("#idea-body").val('')
 
   $.ajax({
     type:    "POST",
     url:     "/api/v1/ideas.json",
     data:    ideaParams,
     success: function(newIdea) {
-      renderIdea(newIdea)
+      renderIdeas(newIdea)
     },
     error: function(xhr) {
       console.log(xhr.responseText)
     }
+    })
   })
 };
 
   function deleteIdea() {
-    $('#latest-ideas').delegate('#delete-idea', 'click', function(){
+    $('#latest-ideas').delegate('#delete-idea', 'click', function() {
       var $idea = $(this).closest('.idea')
       $.ajax({
         type: 'DELETE',
-        url:  '/api/v1/ideas/' + $idea.attr('data-id') + '.json',
+        url:  '/api/v1/ideas/' + $idea.attr("data-id") + '.json',
         success: function(){
           $idea.remove()
         },
@@ -91,13 +84,13 @@ function createIdea() {
   }
 
 // not sure what to do with this yet
-var thumbsUp = {
+var Cam = {
   genius: "genius",
   plausible: "genius",
   swill: "plausible"
 }
 
-var thumbsDown = {
+var Peyton = {
   genius: "plausible",
   plausible: "swill",
   swill: "swill"
