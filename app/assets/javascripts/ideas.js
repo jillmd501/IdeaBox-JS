@@ -1,21 +1,13 @@
 $(document).ready(function(){
-    listIdeas();
     fetchIdeas();
     createIdea();
     deleteIdea();
 });
 
-function listIdeas(){
-  $.getJSON('/api/v1/ideas', function(data) {
-    $.each(data, function(index, idea){
-      renderIdeas(idea)
-    })
-  });
-};
 
 function renderIdeas(idea) {
   $("#latest-ideas").prepend(
-    "<div class='idea' id='" + idea.id + "'> "
+    "<div class='idea' data-id='" + idea.id + "'> "
     + "<h4>"
     + idea.title
     + "</h4>"
@@ -25,8 +17,8 @@ function renderIdeas(idea) {
     + "<h5>"
     + idea.quality
     + "</h5>"
-    + "</div>"
     + "<div class='btn btn-default' id='delete-idea'>Delete</div>"
+    + "</div>"
     )
 }
 
@@ -75,11 +67,11 @@ function createIdea() {
 };
 
   function deleteIdea() {
-    $('#delete-idea').on('click', function() {
+    $('#latest-ideas').delegate('#delete-idea', 'click', function() {
       var $idea = $(this).closest('.idea')
       $.ajax({
         type: 'DELETE',
-        url:  '/api/v1/ideas/' + $idea.data("id") + '.json',
+        url:  '/api/v1/ideas/' + $idea.attr("data-id") + '.json',
         success: function(){
           $idea.remove()
         },
@@ -92,13 +84,13 @@ function createIdea() {
   }
 
 // not sure what to do with this yet
-var thumbsUp = {
+var Cam = {
   genius: "genius",
   plausible: "genius",
   swill: "plausible"
 }
 
-var thumbsDown = {
+var Peyton = {
   genius: "plausible",
   plausible: "swill",
   swill: "swill"
