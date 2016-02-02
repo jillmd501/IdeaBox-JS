@@ -13,15 +13,16 @@ function listIdeas(){
 
 function renderIdeas(idea) {
   $("#latest-ideas").append(
-    "<div class='idea' data-id='"
-    + idea.id
-    + "<h3>"
+    "<div class='idea' id='" + idea.id + "'> "
+    + "<h4>"
     + idea.title
-    + "</h3>"
+    + "</h4>"
     + "<p>"
     + idea.body
     + "</p>"
-    + "<button id='delete-idea' name='button-fetch' class='btn btn-default btn-xs'>Delete</button>"
+    + "<h5>"
+    + idea.quality
+    + "</h5>"
     + "</div>"
     )
 }
@@ -34,7 +35,7 @@ function fetchIdeas() {
     success: function(ideas) {
       $.each(ideas, function(index, idea) {
         if (isNaN(newestIdeaID) || idea.id > newestItemID) {
-          renderIdea(idea)
+          renderIdeas(idea)
         }
       })
     },
@@ -44,8 +45,40 @@ function fetchIdeas() {
   })
 }
 
-function fetchIdeasButton() {
-  $("[name='button-fetch']").on("click", function(){
-    fetchIdeas()
+function createIdea() {
+  $("#create-idea").on("click", function() {
+    var ideaParams = {
+      idea: {
+        title: $("#idea-title").val()
+        body: $("#idea-body").val()
+      }
+    }
+
+    $("#idea-title").val()
+    $("#idea-body").val()
+
+    $.ajax({
+      type:    "POST",
+      url:     "/api/v1/ideas.json",
+      data:    ideaParams,
+      success: function(newIdea) {
+        renderIdea(newIdea)
+      },
+      error: function(xhr) {
+        console.log(xhr.responseText)
+      }
     })
+  })
+};
+
+var thumbsUp = {
+  genius: "genius",
+  plausible: "genius",
+  swill: "plausible"
+}
+
+var thumbsDown = {
+  genius: "plausible",
+  plausible: "swill",
+  swill: "swill"
 }
