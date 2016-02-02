@@ -13,14 +13,16 @@ function listIdeas(){
 
 function renderIdeas(idea) {
   $("#latest-ideas").append(
-    "<div class='idea' data-id='"
-    + idea.id
-    + "<h3>"
+    "<div class='idea' id='" + idea.id + "'> "
+    + "<h4>"
     + idea.title
-    + "</h3>"
+    + "</h4>"
     + "<p>"
     + idea.body
     + "</p>"
+    + "<h5>"
+    + idea.quality
+    + "</h5>"
     + "</div>"
     )
 }
@@ -41,4 +43,16 @@ function fetchIdeas() {
       console.log(xhr.responseText)
     }
   })
+}
+
+var thumbsUp = {
+  genius: "genius",
+  plausible: "genius",
+  swill: "plausible"
+}
+
+var thumbsDown = {
+  genius: "plausible",
+  plausible: "swill",
+  swill: "swill"
 }

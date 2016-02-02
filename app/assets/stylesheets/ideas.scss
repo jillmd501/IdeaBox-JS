@@ -10,8 +10,14 @@ h1 {
 }
 
 h3 {
-  color: white;
-  font-weight: lighter;
+  color: #000000;
+  font-family: 'Permanent Marker', cursive;
+}
+h5 {
+  font-family: 'Raleway', sans-serif;
+  color: #ffffff;
+  font-size: 18px;
+  font-size: 2.3rem;
 }
 
 .btn-default {
@@ -19,4 +25,8 @@ h3 {
   color: white;
   border-width: 2px;
   border-color: white;
+}
+#new-idea{
+  color: white;
+  background-color: #000000;
 }
