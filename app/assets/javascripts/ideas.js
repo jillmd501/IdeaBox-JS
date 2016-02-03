@@ -9,20 +9,18 @@ $(document).ready(function(){
 
 function renderIdeas(idea) {
   $("#latest-ideas").prepend(
-    "<div class='idea' data-id='" + idea.id + "'> "
-    + "<h4>"
-    + idea.title
-    + "</h4>"
-    + "<p>"
-    + idea.body
-    + "</p>"
-    + "<h5>"
-    + idea.quality
-    + "</h5>"
-    + "<div class='btn btn-default' id='delete-idea'>Delete</div>"
-    + "<div class='btn btn-default' id='edit-idea'>Edit</div>"
-    + "</div>"
+    "<div class='idea' id='idea-id-" + idea.id + "' data-id='" + idea.id + "'> " +
+      "<h4>" + idea.title + "</h4>" +
+      "<p>" + idea.body + "</p>" +
+      "<h5 contentEditable=false>" + idea.quality + "</h5>" +
+
+      "<div class='btn btn-default' id='delete-idea'>Delete</div>" +
+      "<div class='btn btn-default' id='edit-idea'>Edit</div>" +
+      "<div class='btn btn-default' id='save-idea'>Save</div>" +
+    "</div>"
     )
+
+    // bind all events related to an idea
 }
 
 function fetchIdeas() {
@@ -70,7 +68,7 @@ function createIdea() {
 };
 
   function deleteIdea() {
-    $('#latest-ideas').delegate('#delete-idea', 'click', function() {
+    $('#latest-ideas').on('click', '#delete-idea', function() {
       var $idea = $(this).closest('.idea')
       $.ajax({
         type: 'DELETE',
@@ -88,20 +86,18 @@ function createIdea() {
 
 
   function editIdea() {
-    $('#latest-ideas').delegate('#edit-idea', 'click', function() {
+    $('#latest-ideas').on('click','#edit-idea', function() {
       var $idea = $(this).closest(".idea");
-      document.getElementById("idea-title" + $idea.attr('data-id')).contentEditable = true;
-      document.getElementById("idea-body" + $idea.attr('data-id')).contentEditable = true;
-
-      $(".saveIdeaButton").click(function(){
-        document.getElementById("idea-title" + $idea.attr('data-id')).contentEditable = false;
-        document.getElementById("idea-body" + $idea.attr('data-id')).contentEditable = false;
-        $(".saveIdeaButton").remove();
+      document.getElementById("idea-id-" + $idea.attr('data-id')).contentEditable = true;
+      debugger
+      $("#save-idea").click(function(){
+        document.getElementById("idea-id-" + $idea.attr('data-id')).contentEditable = false;
+        $("#save-idea").remove();
         var ideaParams = {
           idea: {
             id: $idea.attr('data-id'),
-            title: $("#idea-title" + $idea.attr('data-id')).text(),
-            body: $("#idea-body" + $idea.attr('data-id')).text()
+            title: $("#idea-id-" + $idea.attr('data-id')).text(),
+            body: $("#idea-id-" + $idea.attr('data-id')).text()
           }
         }
 
