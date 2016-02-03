@@ -3,6 +3,7 @@ $(document).ready(function(){
     createIdea();
     deleteIdea();
     editIdea();
+    searchIdeas();
 });
 
 
@@ -118,6 +119,19 @@ function createIdea() {
       });
     });
   };
+
+  function searchIdeas() {
+  $("#filter").keyup(function(){
+		var filter = $(this).val();
+		$("#latest-ideas").children().each(function(){
+			if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+				$(this).fadeOut();
+			} else {
+				$(this).show();
+			}
+		});
+	});
+}
 
 var Cam = {
   genius: "genius",
