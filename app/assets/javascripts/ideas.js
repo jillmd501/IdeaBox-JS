@@ -6,7 +6,7 @@ $(document).ready(function(){
     searchIdeas();
     thumbsUp();
     searchIdeas();
-    thumbsDown();
+    // thumbsDown();
 });
 
 
@@ -137,9 +137,6 @@ function thumbsUp() {
       if (idea_quality === 'swill') {
         idea_quality = 'plausible';
       }
-      else if (idea_quality === 'plausible') {
-        idea_quality = 'genius';
-      }
       else {
         idea_quality = 'genius';
       }
@@ -147,9 +144,9 @@ function thumbsUp() {
     $.ajax({
       type: 'PUT',
       url: '/api/v1/ideas/' + $idea.attr('data-id'),
-      data: {idea: { quality: idea_quality} },
+      data: {idea: { quality: idea_quality} } ,
       success: function() {
-        fetchIdeas();
+        $("#idea-quality-" + $idea.attr("data-id")).html(idea_quality);
       },
       error: function(xhr) {
         console.log(xhr.responseText)
@@ -158,30 +155,26 @@ function thumbsUp() {
   }
 )};
 
-function thumbsDown() {
-  $("#latest-ideas").on('click', '#bad-quality', function() {
-    var $idea = $(this).closest(".idea")
-    var idea_quality = $("#idea-quality-" + $idea.attr("data-id")).text()
-      if (idea_quality === 'genius') {
-        idea_quality = 'plausible';
-      }
-      else if (idea_quality === 'plausible') {
-        idea_quality = 'swill';
-      }
-      else {
-        idea_quality = 'swill';
-      }
-
-    $.ajax({
-      type: 'PUT',
-      url: '/api/v1/ideas/' + $idea.attr('data-id'),
-      data: {idea: { quality: idea_quality} },
-      success: function() {
-        fetchIdeas();
-      },
-      error: function(xhr) {
-        console.log(xhr.responseText)
-      }
-    });
-  }
-)};
+// function thumbsDown() {
+//   $("#latest-ideas").on('click', '#bad-quality', function() {
+//     var $idea = $(this).closest(".idea")
+//     var idea_quality = $("#idea-quality-" + $idea.attr("data-id")).text()
+//       if (idea_quality === 'genius') {
+//         idea_quality = 'plausible';
+//       }
+//       else {
+//         idea_quality = 'swill';
+//       }
+//     $.ajax({
+//       type: 'PUT',
+//       url: '/api/v1/ideas/' + $idea.attr('data-id'),
+//       data: {idea: { quality: idea_quality} },
+//       success: function() {
+//         fetchIdeas();
+//       },
+//       error: function(xhr) {
+//         console.log(xhr.responseText)
+//       }
+//     });
+//   }
+// )};
