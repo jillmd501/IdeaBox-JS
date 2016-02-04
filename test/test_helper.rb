@@ -23,8 +23,6 @@ class ActionDispatch::IntegrationTest
 end
 
 class ActiveSupport::TestCase
-  fixtures :all
-
   def json_response
     json = JSON.parse(response.body, symbolize_names: true)
   end
