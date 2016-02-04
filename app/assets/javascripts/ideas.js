@@ -5,6 +5,8 @@ $(document).ready(function(){
     editIdea();
     searchIdeas();
     thumbsUp();
+    searchIdeas();
+    thumbsDown();
 });
 
 
@@ -30,7 +32,7 @@ function fetchIdeas() {
     url:     "/api/v1/ideas.json",
     success: function(ideas) {
       $.each(ideas, function(index, idea) {
-        if (isNaN(newestIdeaID) || idea.id > newestItemID) {
+        if (isNaN(newestIdeaID) || idea.id > newestIdeaID) {
           renderIdeas(idea)
         }
       })
@@ -140,6 +142,34 @@ function thumbsUp() {
       }
       else {
         idea_quality = 'genius';
+      }
+
+    $.ajax({
+      type: 'PUT',
+      url: '/api/v1/ideas/' + $idea.attr('data-id'),
+      data: {idea: { quality: idea_quality} },
+      success: function() {
+        fetchIdeas();
+      },
+      error: function(xhr) {
+        console.log(xhr.responseText)
+      }
+    });
+  }
+)};
+
+function thumbsDown() {
+  $("#latest-ideas").on('click', '#bad-quality', function() {
+    var $idea = $(this).closest(".idea")
+    var idea_quality = $("#idea-quality-" + $idea.attr("data-id")).text()
+      if (idea_quality === 'genius') {
+        idea_quality = 'plausible';
+      }
+      else if (idea_quality === 'plausible') {
+        idea_quality = 'swill';
+      }
+      else {
+        idea_quality = 'swill';
       }
 
     $.ajax({
