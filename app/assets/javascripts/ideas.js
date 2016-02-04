@@ -7,6 +7,7 @@ $(document).ready(function(){
     thumbsUp();
     searchIdeas();
     thumbsDown();
+    truncate();
 });
 
 
@@ -14,7 +15,7 @@ function renderIdeas(idea) {
   $("#latest-ideas").prepend(
     "<div class='idea' id='idea-id-" + idea.id + "' data-id='" + idea.id + "'> " +
       "<h4>" + idea.title + "</h4>" +
-      "<p>" + idea.body + "</p>" +
+      "<p>" + truncate(idea.body) + "</p>" +
       "<h5 contentEditable=false id='idea-quality-" + idea.id + "'>" + idea.quality + "</h5>" +
       "<div class='btn btn-default' id='delete-idea'>Delete</div>" +
       "<div class='btn btn-default' id='edit-idea'>Edit</div>" +
@@ -68,6 +69,15 @@ function createIdea() {
     })
   })
 };
+
+function truncate(string){
+  if(string.length > 100){
+    return $.trim(string).substring(0, 100)
+           .split(" ").slice(0, -1).join(" ") + "...";
+  } else {
+    return string;
+  }
+}
 
   function deleteIdea() {
     $('#latest-ideas').on('click', '#delete-idea', function() {
