@@ -1,0 +1,64 @@
+{
+  "MiniTest": {
+    "coverage": {
+      "/Users/jilldonohue/MOdule_4/ideabox_js_style/app/controllers/api/v1/ideas_controller.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/Users/jilldonohue/MOdule_4/ideabox_js_style/app/controllers/application_controller.rb": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/Users/jilldonohue/MOdule_4/ideabox_js_style/app/controllers/ideas_controller.rb": [
+        0,
+        0,
+        0
+      ],
+      "/Users/jilldonohue/MOdule_4/ideabox_js_style/app/helpers/api/v1/items_helper.rb": [
+        0,
+        0
+      ],
+      "/Users/jilldonohue/MOdule_4/ideabox_js_style/app/helpers/application_helper.rb": [
+        0,
+        0
+      ],
+      "/Users/jilldonohue/MOdule_4/ideabox_js_style/app/models/idea.rb": [
+        0,
+        0,
+        0
+      ]
+    },
+    "timestamp": 1454550975
+  }
+}

@@ -16,16 +16,13 @@ gem 'materialize-sass'
 group :development, :test do
   gem 'pry'
   gem 'capybara'
+  gem 'simplecov'
+  gem 'selenium-webdriver'
+  gem 'mocha'
+  gem 'launchy'
 end
 
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'better_errors'
-end
-
-group :test do
-  gem 'simplecov'
-  gem 'selenium-webdriver'
-  gem 'mocha'
-  gem 'launchy'
 end
