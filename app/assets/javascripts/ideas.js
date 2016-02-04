@@ -4,6 +4,7 @@ $(document).ready(function(){
     deleteIdea();
     editIdea();
     searchIdeas();
+    thumbsUp();
 });
 
 
@@ -12,16 +13,15 @@ function renderIdeas(idea) {
     "<div class='idea' id='idea-id-" + idea.id + "' data-id='" + idea.id + "'> " +
       "<h4>" + idea.title + "</h4>" +
       "<p>" + idea.body + "</p>" +
-      "<h5 contentEditable=false>" + idea.quality + "</h5>" +
-
+      "<h5 contentEditable=false id='idea-quality-" + idea.id + "'>" + idea.quality + "</h5>" +
       "<div class='btn btn-default' id='delete-idea'>Delete</div>" +
       "<div class='btn btn-default' id='edit-idea'>Edit</div>" +
       "<div class='btn btn-default' id='save-idea'>Save</div>" +
+      "<i class='small material-icons' id='good-quality'>thumb_up</i>" +
+      "<i class='small material-icons' id='bad-quality'>thumb_down</i>" +
     "</div>"
     )
-
-    // bind all events related to an idea
-}
+  }
 
 function fetchIdeas() {
   var newestIdeaID = parseInt($(".idea").last().attr("data-id"))
@@ -89,10 +89,9 @@ function createIdea() {
     $('#latest-ideas').on('click','#edit-idea', function() {
       var $idea = $(this).closest(".idea");
       document.getElementById("idea-id-" + $idea.attr('data-id')).contentEditable = true;
-      debugger
       $("#save-idea").click(function(){
         document.getElementById("idea-id-" + $idea.attr('data-id')).contentEditable = false;
-        $("#save-idea").remove();
+        $("#save-idea").disable();
         var ideaParams = {
           idea: {
             id: $idea.attr('data-id'),
@@ -129,14 +128,30 @@ function createIdea() {
 	});
 }
 
-var Cam = {
-  genius: "genius",
-  plausible: "genius",
-  swill: "plausible"
-}
+function thumbsUp() {
+  $("#latest-ideas").on('click', '#good-quality', function() {
+    var $idea = $(this).closest(".idea")
+    var idea_quality = $("#idea-quality-" + $idea.attr("data-id")).text()
+      if (idea_quality === 'swill') {
+        idea_quality = 'plausible';
+      }
+      else if (idea_quality === 'plausible') {
+        idea_quality = 'genius';
+      }
+      else {
+        idea_quality = 'genius';
+      }
 
-var Peyton = {
-  genius: "plausible",
-  plausible: "swill",
-  swill: "swill"
-}
+    $.ajax({
+      type: 'PUT',
+      url: '/api/v1/ideas/' + $idea.attr('data-id'),
+      data: {idea: { quality: idea_quality} },
+      success: function() {
+        fetchIdeas();
+      },
+      error: function(xhr) {
+        console.log(xhr.responseText)
+      }
+    });
+  }
+)};
