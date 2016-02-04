@@ -9,10 +9,6 @@ class Api::V1::IdeasController < ApplicationController
     respond_with Idea.create(idea_params), location: nil
   end
 
-  def show
-    respond_with Idea.find(params["id"])
-  end
-
   def destroy
     respond_with Idea.destroy(params[:id])
   end

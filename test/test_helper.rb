@@ -21,3 +21,11 @@ class ActionDispatch::IntegrationTest
     Capybara.default_max_wait_time = 20
   end
 end
+
+class ActiveSupport::TestCase
+  fixtures :all
+
+  def json_response
+    json = JSON.parse(response.body, symbolize_names: true)
+  end
+end

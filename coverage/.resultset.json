@@ -6,35 +6,8 @@
         1,
         null
       ],
-      "/Users/jilldonohue/Module_4/ideabox_js_style/app/controllers/api/v1/ideas_controller.rb": [
+      "/Users/jilldonohue/Module_4/ideabox_js_style/app/controllers/ideas_controller.rb": [
         1,
-        1,
-        null,
-        1,
-        5,
-        null,
-        null,
-        1,
-        0,
-        null,
-        null,
-        1,
-        0,
-        null,
-        null,
-        1,
-        0,
-        null,
-        null,
-        1,
-        0,
-        0,
-        null,
-        null,
-        1,
-        null,
-        1,
-        0,
         null,
         null
       ],
@@ -49,16 +22,40 @@
         1,
         null
       ],
-      "/Users/jilldonohue/Module_4/ideabox_js_style/app/helpers/api/v1/items_helper.rb": [
+      "/Users/jilldonohue/Module_4/ideabox_js_style/app/helpers/api/v1/ideas_helper.rb": [
         1,
         null
       ],
-      "/Users/jilldonohue/Module_4/ideabox_js_style/app/controllers/ideas_controller.rb": [
+      "/Users/jilldonohue/Module_4/ideabox_js_style/app/controllers/api/v1/ideas_controller.rb": [
         1,
+        1,
+        null,
+        1,
+        5,
+        null,
+        null,
+        1,
+        2,
+        null,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        null,
+        1,
+        3,
         null,
         null
       ]
     },
-    "timestamp": 1454556265
+    "timestamp": 1454557238
   }
 }
