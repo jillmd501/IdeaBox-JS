@@ -18528,13 +18528,13 @@ function createIdea() {
   })
 };
 
-function truncate(string){
-  if(string.length > 100){
-    return $.trim(string).substring(0, 100)
-           .split(" ").slice(0, -1).join(" ") + "...";
+function truncate(body) {
+  if (body.length > 100) {
+    var smallBody = body.substring(0,98);
+    return smallBody.substring(0, Math.min(smallBody.length, smallBody.lastIndexOf(' '))) + '...'
   } else {
-    return string;
-  }
+    return body
+  };
 }
 
   function deleteIdea() {
