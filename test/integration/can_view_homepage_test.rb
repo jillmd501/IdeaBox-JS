@@ -4,6 +4,6 @@ class VisitHomepageTest < ActionDispatch::IntegrationTest
   test 'homepage partial can load with ajax calls' do
     visit '/'
 
-    assert page.has_content?("Team Leaderboard")
+    assert page.has_content?("pantherIDEAS")
     end
   end

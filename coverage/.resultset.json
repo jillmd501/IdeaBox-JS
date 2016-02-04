@@ -1,64 +1,64 @@
 {
   "MiniTest": {
     "coverage": {
-      "/Users/jilldonohue/MOdule_4/ideabox_js_style/app/controllers/api/v1/ideas_controller.rb": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
+      "/Users/jilldonohue/Module_4/ideabox_js_style/app/models/idea.rb": [
+        1,
+        1,
+        null
       ],
-      "/Users/jilldonohue/MOdule_4/ideabox_js_style/app/controllers/application_controller.rb": [
+      "/Users/jilldonohue/Module_4/ideabox_js_style/app/controllers/api/v1/ideas_controller.rb": [
+        1,
+        1,
+        null,
+        1,
+        5,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
         0,
         0,
+        null,
+        null,
+        1,
+        null,
+        1,
         0,
-        0,
-        0
+        null,
+        null
       ],
-      "/Users/jilldonohue/MOdule_4/ideabox_js_style/app/controllers/ideas_controller.rb": [
-        0,
-        0,
-        0
+      "/Users/jilldonohue/Module_4/ideabox_js_style/app/controllers/application_controller.rb": [
+        1,
+        null,
+        null,
+        1,
+        null
       ],
-      "/Users/jilldonohue/MOdule_4/ideabox_js_style/app/helpers/api/v1/items_helper.rb": [
-        0,
-        0
+      "/Users/jilldonohue/Module_4/ideabox_js_style/app/helpers/application_helper.rb": [
+        1,
+        null
       ],
-      "/Users/jilldonohue/MOdule_4/ideabox_js_style/app/helpers/application_helper.rb": [
-        0,
-        0
+      "/Users/jilldonohue/Module_4/ideabox_js_style/app/helpers/api/v1/items_helper.rb": [
+        1,
+        null
       ],
-      "/Users/jilldonohue/MOdule_4/ideabox_js_style/app/models/idea.rb": [
-        0,
-        0,
-        0
+      "/Users/jilldonohue/Module_4/ideabox_js_style/app/controllers/ideas_controller.rb": [
+        1,
+        null,
+        null
       ]
     },
-    "timestamp": 1454550975
+    "timestamp": 1454556265
   }
 }
