@@ -170,7 +170,7 @@ function thumbsDown() {
       url: '/api/v1/ideas/' + $idea.attr('data-id'),
       data: {idea: { quality: idea_quality} },
       success: function() {
-        fetchIdeas();
+        $("#idea-quality-" + $idea.attr("data-id")).html(idea_quality);
       },
       error: function(xhr) {
         console.log(xhr.responseText)
